@@ -25,6 +25,9 @@ class CreateNotificationsTable extends Migration
 
             $table->index(['user_id', 'created_at']);
         });
+
+        // read_at, data, type, morphs->notifiable(check index here)
+        //body is not nullable,
     }
 
     /**

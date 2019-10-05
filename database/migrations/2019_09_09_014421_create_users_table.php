@@ -12,18 +12,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email')->unique();
+        Schema::table('users', function (Blueprint $table) {
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->text('photo_url')->nullable();
             $table->tinyInteger('uses_two_factor_auth')->default(0);
             $table->string('authy_id')->nullable();
             $table->string('country_code', 10)->nullable();
-            $table->string('phone', 25)->nullable();
             $table->string('two_factor_reset_code', 100)->nullable();
             $table->integer('current_team_id')->nullable();
             $table->string('stripe_id')->nullable();
@@ -41,7 +35,11 @@ class CreateUsersTable extends Migration
             $table->text('extra_billing_information')->nullable();
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('last_read_announcements_at')->nullable();
-            $table->timestamps();
+
+            // active, default_language, default_country, last_login_ip_address,
+            // last_login_device, number_of_logins,  last_login_at, expiration_at, password_update_at,
+            // created_by, updated_by, deleted_at, org_id, role_id, avatar, settings, cell_phone,
+            // first_name, last_name, display_name, slack_channel, default_timezone,
         });
     }
 
